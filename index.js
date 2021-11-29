@@ -1,22 +1,19 @@
-const { Client } = require("pg");
-const dotenv = require("dotenv");
+const express = require("express");
+const bodyParser = require("body-parser");
+const db = require("./db");
+const app = express();
 
-dotenv.config();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-const client = new Client({
-    host: "localhost",
-    user: "postgres",
-    port: 5432,
-    password: process.env.PASSWORD,
-    database: "postgres",
+app.get("/", (req, res) => {
+    res.json({ info: "initial route" });
 });
 
-client.connect();
+app.get('/students', db.getStudents)
 
-client.query("SELECT * FROM students", (err, res) => {
-    if (!err) {
-        console.log(res.rows);
-    } else {
-        console.log(err);
-    }
+app.post('/students', db.createStudent)
+
+app.listen(8080, () => {
+    console.log("port 8080 listening...");
 });

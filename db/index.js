@@ -44,11 +44,11 @@ const createStudent = (request, response) => {
 const updateStudent = (request, response) => {
     const { name, surname, age, location, salary } = request.body;
     client.query(
-        "UPDATE students SET name = $1, surname = $2, age = $3, location = $4, salary = $5",
+        "UPDATE students SET name = $1, surname = $2, age = $3, location = $4, salary = $5 WHERE name = $1",
         [name, surname, age, location, salary],
         (err, res) => {
             if (!err) {
-                response.status(201).send(`user ${name} ${surname} updated`);
+                response.status(200).send(`user ${name} ${surname} updated`);
             } else {
                 console.log(err);
             }

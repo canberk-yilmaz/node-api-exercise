@@ -14,6 +14,7 @@ app.get("/students", db.students.getStudents);
 app.get("/student", db.students.getStudentByName);
 app.post("/students", db.students.createStudent);
 app.patch("/students", db.students.updateStudent);
+app.patch("/studentOne", db.students.updateOneStudent);
 app.delete("/student", db.students.deleteStudentByName);
 
 app.listen(8080, () => {

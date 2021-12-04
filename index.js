@@ -17,6 +17,13 @@ app.patch("/students", db.students.updateStudent);
 app.patch("/studentOne", db.students.updateOneStudent);
 app.delete("/student", db.students.deleteStudentByName);
 
+app.get("/classes", db.classes.getAll);
+app.post("/classes", db.classes.create);
+app.get("/class", db.classes.getClass);
+app.get("/classone", db.classes.getByName);
+app.put("/classes", db.classes.updateOne);
+app.delete("/classes", db.classes.delByName);
+
 app.listen(8080, () => {
     console.log("port 8080 listening...");
 });
